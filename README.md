@@ -7,6 +7,8 @@ Kotlin
 
 Android Studio
 
+Jetpack Compose
+
 Room
 
 Canvas
