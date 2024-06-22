@@ -1,7 +1,5 @@
-package com.example.drawapp
+package com.example.drawapp.presentation.components
 
-import android.graphics.Bitmap
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -9,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -19,15 +16,15 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Create
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.ExitToApp
 import androidx.compose.material.icons.filled.KeyboardArrowLeft
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.KeyboardArrowUp
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Slider
@@ -109,7 +106,7 @@ fun AlphaSlider(onChange: (Float) -> Unit) {
     var alpha by remember { mutableStateOf(1f) }
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text("Прозрачность: ${(alpha * 100).toInt()}")
+        Text("Резкость: ${(alpha * 100).toInt()}")
         Slider(
             value = alpha,
             onValueChange = {
@@ -171,7 +168,7 @@ fun ButtonPanel(onClick: () -> Unit, onCapClick: (StrokeCap) -> Unit, onSaveClic
             }
         ) {
             Icon(
-                Icons.Default.KeyboardArrowLeft,
+                Icons.Default.Build,
                 contentDescription = null
             )
         }
@@ -188,7 +185,7 @@ fun ButtonPanel(onClick: () -> Unit, onCapClick: (StrokeCap) -> Unit, onSaveClic
             }
         ) {
             Icon(
-                Icons.Default.KeyboardArrowUp,
+                Icons.Default.Create,
                 contentDescription = null
             )
         }
@@ -205,7 +202,7 @@ fun ButtonPanel(onClick: () -> Unit, onCapClick: (StrokeCap) -> Unit, onSaveClic
             }
         ) {
             Icon(
-                Icons.Default.KeyboardArrowRight,
+                Icons.Default.Menu,
                 contentDescription = null
             )
         }

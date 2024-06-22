@@ -1,4 +1,4 @@
-package com.example.drawapp
+package com.example.drawapp.domain
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
