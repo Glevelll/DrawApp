@@ -12,3 +12,9 @@ Jetpack Compose
 Room
 
 Canvas
+
+Clean Architecture
+
+Dagger Hilt
+
+MVVM
