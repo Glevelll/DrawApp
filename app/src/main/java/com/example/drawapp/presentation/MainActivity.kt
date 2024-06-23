@@ -2,6 +2,7 @@ package com.example.drawapp.presentation
 
 import android.R
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.view.View
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,6 +25,7 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.drawapp.domain.PathData
 import com.example.drawapp.presentation.components.BottomPanel
@@ -62,7 +64,10 @@ class MainActivity : ComponentActivity() {
                                         showBottomSheet.value = false
                                         delay(1000)
                                         val rootView = findViewById<View>(R.id.content)
-                                        viewModel.saveCanvasToBitmap(context, rootView)
+                                        val displayMetrics = context.resources.displayMetrics
+                                        val screenHeight = displayMetrics.heightPixels
+                                        val targetHeight = screenHeight - (50.dp.toPx(displayMetrics)).toInt()
+                                        viewModel.saveCanvasToBitmap(context, rootView, targetHeight)
                                         showBottomSheet.value = true
                                     }
                                 }
@@ -78,4 +83,8 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
+
+fun Dp.toPx(displayMetrics: DisplayMetrics): Float {
+    return this.value * displayMetrics.density
 }

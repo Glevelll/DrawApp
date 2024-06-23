@@ -1,5 +1,6 @@
 package com.example.drawapp.presentation.components
 
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -40,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -50,23 +52,13 @@ fun BottomPanel(onClick: (Color) -> Unit, onLineWidthChange: (Float) -> Unit, on
             .background(Color.LightGray),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        ColorList{ color ->
-            onClick(color)
-        }
-        CustomSlider{ lineWidth ->
-            onLineWidthChange(lineWidth)
-        }
-        ButtonPanel({
-            onBackClick()
-        }, {
-            onCapClick(it)
-        } ) {
-            onSaveClick()
-        }
+        ColorList{ color -> onClick(color) }
+        CustomSlider{ lineWidth -> onLineWidthChange(lineWidth) }
+        ButtonPanel({ onBackClick() },
+            { onCapClick(it) }
+        ) { onSaveClick() }
         Spacer(modifier = Modifier.height(10.dp))
-        AlphaSlider { alpha ->
-            onAlphaChange(alpha)
-        }
+        AlphaSlider { alpha -> onAlphaChange(alpha) }
         Spacer(modifier = Modifier.height(20.dp))
     }
 }
@@ -91,9 +83,7 @@ fun ColorList(onClick: (Color) -> Unit) {
             Box(
                 modifier = Modifier
                     .padding(end = 10.dp)
-                    .clickable {
-                        onClick(color)
-                    }
+                    .clickable { onClick(color) }
                     .size(40.dp)
                     .background(color, CircleShape)
             )
@@ -146,9 +136,7 @@ fun ButtonPanel(onClick: () -> Unit, onCapClick: (StrokeCap) -> Unit, onSaveClic
                 .clip(CircleShape)
                 .background(Color.White)
                 .padding(horizontal = 5.dp),
-            onClick = {
-                onClick()
-            }
+            onClick = { onClick() }
         ) {
             Icon(
                 Icons.Default.ArrowBack,
@@ -163,9 +151,7 @@ fun ButtonPanel(onClick: () -> Unit, onCapClick: (StrokeCap) -> Unit, onSaveClic
                 .clip(CircleShape)
                 .background(Color.White)
                 .padding(horizontal = 5.dp),
-            onClick = {
-                onCapClick(StrokeCap.Round)
-            }
+            onClick = { onCapClick(StrokeCap.Round) }
         ) {
             Icon(
                 Icons.Default.Build,
@@ -180,9 +166,7 @@ fun ButtonPanel(onClick: () -> Unit, onCapClick: (StrokeCap) -> Unit, onSaveClic
                 .clip(CircleShape)
                 .background(Color.White)
                 .padding(horizontal = 5.dp),
-            onClick = {
-                onCapClick(StrokeCap.Butt)
-            }
+            onClick = { onCapClick(StrokeCap.Butt) }
         ) {
             Icon(
                 Icons.Default.Create,
@@ -197,9 +181,7 @@ fun ButtonPanel(onClick: () -> Unit, onCapClick: (StrokeCap) -> Unit, onSaveClic
                 .clip(CircleShape)
                 .background(Color.White)
                 .padding(horizontal = 5.dp),
-            onClick = {
-                onCapClick(StrokeCap.Square)
-            }
+            onClick = { onCapClick(StrokeCap.Square) }
         ) {
             Icon(
                 Icons.Default.Menu,
@@ -214,9 +196,7 @@ fun ButtonPanel(onClick: () -> Unit, onCapClick: (StrokeCap) -> Unit, onSaveClic
                 .clip(CircleShape)
                 .background(Color.White)
                 .padding(horizontal = 5.dp),
-            onClick = {
-                onSaveClick()
-            }
+            onClick = { onSaveClick() }
         ) {
             Icon(
                 Icons.Default.ExitToApp,

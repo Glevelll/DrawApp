@@ -19,11 +19,11 @@ class MainActivityViewModel @Inject constructor(
     private val drawingDatabase: DrawingDatabase
 ) : ViewModel() {
 
-    suspend fun saveCanvasToBitmap(context: Context, view: View) {
+    suspend fun saveCanvasToBitmap(context: Context, view: View, targetHeight: Int) {
         val bitmap = context.resources.displayMetrics.let { displayMetrics ->
             with(context) {
                 val viewBitmap = view.drawToBitmap()
-                Bitmap.createBitmap(viewBitmap, 0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels)
+                Bitmap.createBitmap(viewBitmap, 0, 0, displayMetrics.widthPixels, targetHeight)
             }
         }
 
@@ -67,3 +67,4 @@ class MainActivityViewModel @Inject constructor(
         return baos.toByteArray()
     }
 }
+
